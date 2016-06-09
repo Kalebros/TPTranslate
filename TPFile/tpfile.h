@@ -3,7 +3,7 @@
 
 #include <gdal/gdal_priv.h>
 #include <gdal/cpl_conv.h>
-
+#include <gdal/cpl_string.h>
 #include <string>
 
 using namespace std;
@@ -50,17 +50,25 @@ public:
     void setNombreArchivo(string n);
 
     /*!
-     * Inicializa la libreria GDAL
-     *
-     * Para inicializar la libreria GDAl, este metodo llama internamente a
-     * GDALAllRegister (ver documentacion en gdal.org)
-     * @note No modificae el estado de los objetos TPFile
+     * Indica si el archivo esta abierto (listo para usarse)
+     * @return True, esta abierto y puede usarse, false en caso contrario
+     * @note No modifica el objeto
      */
-    static void initGDAL();
+    bool isOpen() const;
+
+    /*!
+     * Guarda el archivo en formato GeoTIFF
+     * @param aSalida   Ruta del archivo de salida
+     * @return True, se ha transformado correctamente, false en caso contrario
+     * @pre El archivo DEBE DE ESTAR ABIERTO
+     * @note No modifica el objeto
+     */
+    bool saveToTIFF(string aSalida);
 
 protected:
 
     string _nombreArchivo; ///< Nombre del archivo que queremos transformar
+    GDALDataset *_dataset;
 
 };
 

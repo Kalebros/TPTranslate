@@ -12,6 +12,8 @@ CONFIG += staticlib
 
 DESTDIR = ../lib
 
+LIBS += -lgdal
+
 SOURCES += tpfile.cpp
 
 HEADERS += tpfile.h
