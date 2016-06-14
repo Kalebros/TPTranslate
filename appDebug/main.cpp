@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
     cout << "Hello World!" << endl;
 
-    GDALAllRegister();
+    TPFile::initGDAL();
 
     TPFile archivo;
     TPFile archivo2("/home/bardo/Workbench/Qt/ClasesQt/imagen_prueba.jpg");

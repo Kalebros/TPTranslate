@@ -65,6 +65,13 @@ public:
      */
     bool saveToTIFF(string aSalida);
 
+    /*!
+     * Inicializa la libreria GDAL
+     * @note No modifica el objeto
+     */
+    static void initGDAL()
+    { GDALAllRegister(); }
+
 protected:
 
     string _nombreArchivo; ///< Nombre del archivo que queremos transformar

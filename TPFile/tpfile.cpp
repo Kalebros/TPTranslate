@@ -51,4 +51,3 @@ bool TPFile::saveToTIFF(string aSalida)
 
     return true;
 }
-
