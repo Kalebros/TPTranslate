@@ -85,8 +85,7 @@ public:
      * Inicializa la libreria GDAL
      * @note No modifica el objeto
      */
-    static void initGDAL()
-    { GDALAllRegister(); }
+    static void initGDAL();
 
     /*!
      * Devuelve los nombres de los drivers soportados
@@ -97,20 +96,21 @@ public:
      */
     static vector<string> driverNames()
     {
-        vector<string> res;
-        int nDrivers=GetGDALDriverManager()->GetDriverCount();
-        for(int i=0;i<nDrivers;i++) {
-            string name=GetGDALDriverManager()->GetDriver(i)->GetDescription();
-            res.push_back(name);
-        }
+            vector<string> res;
+            int nDrivers=GetGDALDriverManager()->GetDriverCount();
+            for(int i=0;i<nDrivers;i++) {
+                string name=GetGDALDriverManager()->GetDriver(i)->GetDescription();
+                res.push_back(name);
+            }
 
-        return res;
+            return res;
     }
+
 
 protected:
 
     string _nombreArchivo; ///< Nombre del archivo que queremos transformar
-    GDALDataset *_dataset;
+    GDALDataset *_dataset;  ///< Dataset
 
 };
 

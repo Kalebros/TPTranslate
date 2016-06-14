@@ -21,7 +21,8 @@ int main(int argc, char *argv[])
     for(auto it=listaDrivers.begin();it!=listaDrivers.end();it++) {
         cout <<"DRIVER NAME: "<<(*it) <<endl;
     }
-    archivo2.saveToTIFF("/home/bardo/Workbench/Qt/ClasesQt/imagen_salida.tiff");
+    if(!archivo2.saveToFileFormat("/home/bardo/Workbench/Qt/ClasesQt/imagen_salida.tiff","GTiff"))
+        cout << "Archivo NO GUARDADO."<<endl;
 
     return 0;
 }

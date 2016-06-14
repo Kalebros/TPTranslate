@@ -72,3 +72,9 @@ bool TPFile::saveToFileFormat(string file, const char *format)
 
     return true;
 }
+
+void TPFile::initGDAL()
+{
+    GDALAllRegister();
+}
+
