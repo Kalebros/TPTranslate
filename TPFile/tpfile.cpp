@@ -51,3 +51,24 @@ bool TPFile::saveToTIFF(string aSalida)
 
     return true;
 }
+
+bool TPFile::saveToFileFormat(string file, string format)
+{
+    return saveToFileFormat(file,format.c_str());
+}
+
+bool TPFile::saveToFileFormat(string file, const char *format)
+{
+    GDALDriver *outputDriver;
+    outputDriver=GetGDALDriverManager()->GetDriverByName(format);
+
+    if(outputDriver==NULL)
+        return false;
+
+    GDALDataset *destino=outputDriver->CreateCopy(file.c_str(),_dataset,FALSE,NULL,NULL,NULL);
+
+    if(destino!=NULL)
+        GDALClose((GDALDatasetH)destino);
+
+    return true;
+}

@@ -5,6 +5,7 @@
 #include <gdal/cpl_conv.h>
 #include <gdal/cpl_string.h>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -66,11 +67,45 @@ public:
     bool saveToTIFF(string aSalida);
 
     /*!
+     * Guarda el archivo en un formato especificado
+     * @param file  Nombre del archivo de salida
+     * @param format    Nombre del driver (formato) de salida
+     * @return True, se ha transformado correctamente, false en caso contrario
+     * @pre El archivo DEBE DE ESTAR ABIERTO
+     * @note No modifica el objeto
+     */
+    bool saveToFileFormat(string file,string format);
+
+    /*!
+     * @overload
+     */
+    bool saveToFileFormat(string file,const char *format);
+
+    /*!
      * Inicializa la libreria GDAL
      * @note No modifica el objeto
      */
     static void initGDAL()
     { GDALAllRegister(); }
+
+    /*!
+     * Devuelve los nombres de los drivers soportados
+     * @return Descripcion de los drivers
+     * @note No modifica el objeto
+     * @note Existe una sobrecarga por devolver el vector
+     * por copia
+     */
+    static vector<string> driverNames()
+    {
+        vector<string> res;
+        int nDrivers=GetGDALDriverManager()->GetDriverCount();
+        for(int i=0;i<nDrivers;i++) {
+            string name=GetGDALDriverManager()->GetDriver(i)->GetDescription();
+            res.push_back(name);
+        }
+
+        return res;
+    }
 
 protected:
 

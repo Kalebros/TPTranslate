@@ -6,6 +6,8 @@
 
 QT       -= gui
 
+CONFIG+= c++11
+
 TARGET = TPFile
 TEMPLATE = lib
 CONFIG += staticlib
