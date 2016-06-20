@@ -2,4 +2,5 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     TPFile \
-    appDebug
+    appDebug \
+    App
